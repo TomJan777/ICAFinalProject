@@ -1,0 +1,8 @@
+syntax = "proto3";
+package b9lab.tollroad.tollroad;
+
+option go_package = "github.com/b9lab/toll-road/x/tollroad/types";
+
+message SystemInfo {
+  uint64 nextOperatorId = 1; 
+}

@@ -1,0 +1,27 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha --require ts-node/register 'test/**/*.ts'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cosmjs/stargate": "0.28.13",
+    "protobufjs": "7.1.2"
+  },
+  "devDependencies": {
+    "@types/chai": "4.3.3",
+    "@types/chai-as-promised": "7.1.5",
+    "@types/dotenv": "8.2.0",
+    "@types/mocha": "10.0.0",
+    "@types/node": "18.8.2",
+    "chai": "4.3.6",
+    "chai-as-promised": "7.1.1",
+    "dotenv": "16.0.3",
+    "mocha": "10.0.0",
+    "ts-node": "10.9.1"
+  }
+}

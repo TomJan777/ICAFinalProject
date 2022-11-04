@@ -1,0 +1,13 @@
+image: git.academy.b9lab.com:5050/ida-p2-final-exam/exam-code:341649a
+
+stages:
+  - test
+
+test:
+  tags:
+    - shared-runner-1
+  script:
+    - bash -c /original/score-ci.sh
+  variables:
+    GIT_STRATEGY: clone
+    GIT_DEPTH: 0

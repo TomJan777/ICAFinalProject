@@ -1,0 +1,61 @@
+FROM --platform=linux ubuntu:22.04
+ARG BUILDARCH
+
+# Change your versions here
+ENV GO_VERSION=1.18.3
+ENV IGNITE_VERSION=0.22.1
+ENV MOCKGEN_VERSION=1.6.0
+ENV NODE_VERSION=18.x
+
+ENV LOCAL=/usr/local
+ENV GOROOT=$LOCAL/go
+ENV HOME=/root
+ENV GOPATH=$HOME/go
+ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+
+RUN mkdir -p $GOPATH/bin
+
+ENV PACKAGES curl gcc jq make unzip netcat
+RUN apt-get update
+RUN apt-get install -y $PACKAGES
+
+# Install Go
+RUN curl -L https://go.dev/dl/go${GO_VERSION}.linux-$BUILDARCH.tar.gz | tar -C $LOCAL -xzf -
+
+# Install Ignite
+RUN curl -L https://get.ignite.com/cli@v${IGNITE_VERSION}! | bash
+
+# Install Mockgen
+RUN go install github.com/golang/mock/mockgen@v${MOCKGEN_VERSION}
+
+# Install Node
+RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash -
+RUN apt-get install -y nodejs
+
+# Install yq
+RUN curl -L https://github.com/mikefarah/yq/releases/latest/download/yq_linux_$BUILDARCH --output /usr/local/bin/yq 
+RUN chmod a+x /usr/local/bin/yq
+
+EXPOSE 1317 4500 5000 26657
+
+WORKDIR /original
+ADD . /original
+RUN go mod download
+
+WORKDIR /original/client
+RUN rm -rf /original/client/node_modules
+RUN npm install
+
+WORKDIR /exam
+
+# Create the image
+# $ docker build -f Dockerfile-ubuntu . -t exam_i
+# To test only 1 command
+# $ docker run --rm -it -v $(pwd):/exam -w /exam exam_i go test github.com/b9lab/checkers/x/checkers/keeper
+# To build container
+# $ docker create --name exam -i -v $(pwd):/exam -w /exam -p 1317:1317 -p 3000:3000 -p 4500:4500 -p 5000:5000 -p 26657:26657 exam_i
+# $ docker start exam
+# To run server on it
+# $ docker exec -it exam ignite chain serve --reset-once
+# In other shell, to query it
+# $ docker exec -it exam checkersd query checkers list-stored-game

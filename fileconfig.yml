@@ -1,0 +1,88 @@
+version: 1.0
+configuration:
+  has_webserver: false
+  scoring:
+    command: ./score.sh
+
+  readonly_paths:
+    - app/export.go
+    - app/genesis.go
+    - app/simulation_test.go
+    - client/src/util/faucet.ts
+    - client/src/util/signer.ts
+    - client/src/tollroad_stargateclient.ts
+    - client/test/integration/one-run.ts
+    - client/.env
+    - client/environment.d.ts
+    - cmd/toll-roadd/main.go
+    - docs/docs.go
+    - proto/tollroad/params.proto
+    - proto/tollroad/road_operator.proto
+    - proto/tollroad/system_info.proto
+    - testutil/mock_types/bank_escrow_helpers.go
+    - testutil/mock_types/expected_keepers.go
+    - testutil/network/network.go
+    - testutil/nullify/nullify.go
+    - testutil/sample/sample.go
+    - x/tollroad/client/cli/query_params.go
+    - x/tollroad/client/cli/query_road_operator_test.go
+    - x/tollroad/client/cli/query_road_operator.go
+    - x/tollroad/client/cli/query_system_info_test.go
+    - x/tollroad/client/cli/query_system_info.go
+    - x/tollroad/client/cli/tx_road_operator_test.go
+    - x/tollroad/client/cli/tx_road_operator.go
+    - x/tollroad/keeper/grpc_query_params_test.go
+    - x/tollroad/keeper/grpc_query_params.go
+    - x/tollroad/keeper/grpc_query_road_operator_test.go
+    - x/tollroad/keeper/grpc_query_road_operator.go
+    - x/tollroad/keeper/grpc_query_system_info_test.go
+    - x/tollroad/keeper/grpc_query_system_info.go
+    - x/tollroad/keeper/grpc_query.go
+    - x/tollroad/keeper/msg_server_test.go
+    - x/tollroad/keeper/msg_server.go
+    - x/tollroad/keeper/params_test.go
+    - x/tollroad/keeper/params.go
+    - x/tollroad/keeper/road_operator_test.go
+    - x/tollroad/keeper/road_operator.go
+    - x/tollroad/keeper/system_info_test.go
+    - x/tollroad/keeper/system_info.go
+    - x/tollroad/roadoperatorstudent/msg_server_road_operator_test.go
+    - x/tollroad/roadoperatorstudent/testing.sh
+    - x/tollroad/simulation/road_operator.go
+    - x/tollroad/simulation/simap.go
+    - x/tollroad/types/key_road_operator.go
+    - x/tollroad/types/keys.go
+    - x/tollroad/types/messages_road_operator_test.go
+    - x/tollroad/types/messages_road_operator.go
+    - x/tollroad/types/params.go
+    - x/tollroad/types/params.pb.go
+    - x/tollroad/types/road_operator.pb.go
+    - x/tollroad/types/system_info.pb.go
+    - x/tollroad/types/types.go
+    - x/tollroad/uservaultstudent/msg_server_user_vault_test.go
+    - x/tollroad/uservaultstudent/testing.sh
+    - x/tollroad/uservaultstudent/tx_user_vault_test.go
+    - x/tollroad/genesis_student_test.go
+    - x/tollroad/module.go
+    - x/tollroad/testing.sh
+    - .gitignore
+    - .gitlab-ci.yml
+    - config.yml
+    - Dockerfile-ubuntu
+    - fileconfig.yml
+    - overwrite-readonly-one.sh
+    - overwrite-readonly.sh
+    - readme-ignite.md
+    - readme.md
+    - score.sh
+    - score-ci.sh
+    - testing-cosmjs.sh
+    - trace.md
+
+  ide_config:
+    default_open_files:
+      - readme.md
+    project_menu:
+      run: bash ./score.sh
+      install: sudo apt update && sudo apt-get install jq build-essential -y && sudo curl https://get.ignite.com/cli@v0.22.1! | sudo bash && wget -qO- https://go.dev/dl/go1.18.3.linux-amd64.tar.gz | sudo tar xvz -C /opt && sudo ln -s /opt/go/bin/go /usr/bin/go
+      test: bash ./score.sh

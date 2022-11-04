@@ -1,0 +1,18 @@
+syntax = "proto3";
+package b9lab.tollroad.tollroad;
+
+import "gogoproto/gogo.proto";
+import "tollroad/params.proto";
+import "tollroad/system_info.proto";
+import "tollroad/road_operator.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/b9lab/toll-road/x/tollroad/types";
+
+// GenesisState defines the tollroad module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  SystemInfo systemInfo = 2 [(gogoproto.nullable) = false];
+  repeated RoadOperator roadOperatorList = 3 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}

@@ -1,0 +1,43 @@
+syntax = "proto3";
+package b9lab.tollroad.tollroad;
+
+import "tollroad/road_operator.proto";
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/b9lab/toll-road/x/tollroad/types";
+
+// Msg defines the Msg service.
+service Msg {
+      rpc CreateRoadOperator(MsgCreateRoadOperator) returns (MsgCreateRoadOperatorResponse);
+  rpc UpdateRoadOperator(MsgUpdateRoadOperator) returns (MsgUpdateRoadOperatorResponse);
+  rpc DeleteRoadOperator(MsgDeleteRoadOperator) returns (MsgDeleteRoadOperatorResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgCreateRoadOperator {
+  string creator = 1;
+  string name = 2;
+  string token = 3;
+  bool active = 4;
+}
+message MsgCreateRoadOperatorResponse {
+  string index = 1;
+}
+
+message MsgUpdateRoadOperator {
+  string creator = 1;
+  string index = 2;
+
+  string name = 3;
+  string token = 4;
+  bool active = 5;
+}
+message MsgUpdateRoadOperatorResponse {}
+
+message MsgDeleteRoadOperator {
+  string creator = 1;
+  string index = 2;
+}
+message MsgDeleteRoadOperatorResponse {}
+
+// this line is used by starport scaffolding # proto/tx/message
