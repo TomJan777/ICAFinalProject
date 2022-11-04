@@ -20,7 +20,7 @@ RUN apt-get update
 RUN apt-get install -y $PACKAGES
 
 # Install Go
-RUN curl -L https://go.dev/dl/go${GO_VERSION}.linux-$BUILDARCH.tar.gz | tar -C $LOCAL -xzf -
+RUN curl -L https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz | tar -C $LOCAL -xzf -
 
 # Install Ignite
 RUN curl -L https://get.ignite.com/cli@v${IGNITE_VERSION}! | bash
@@ -46,7 +46,7 @@ WORKDIR /original/client
 RUN rm -rf /original/client/node_modules
 RUN npm install
 
-WORKDIR /exam
+WORKDIR /WorkingCopy
 
 # Create the image
 # $ docker build -f Dockerfile-ubuntu . -t exam_i
